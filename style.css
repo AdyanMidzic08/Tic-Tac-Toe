@@ -1,0 +1,19 @@
+@font-face {
+    font-family: Headline;
+    src: url(./font/Ketchum.otf);
+}
+
+@font-face {
+    font-family: pokemon;
+    src: url(./font/Pokemon\ X\ and\ Y.ttf);
+}
+
+video {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
