@@ -8,6 +8,12 @@
     src: url(./font/Pokemon\ X\ and\ Y.ttf);
 }
 
+body {
+    overflow: hidden;
+    width: 100%;
+    margin: 0;
+}
+
 video {
     width: 100%;
     height: 100vh;
@@ -17,63 +23,113 @@ video {
     left: 0;
     z-index: -1;
     /*Ramschi oder Huemer fragen ob es gut ausschaut*/
-    filter: blur(0.2rem);
+    filter: blur(0.1rem);
 }
 
 .wrapper {
-position: relative;
-text-align: center;
+    position: relative;
+    text-align: center;
 }
 
 
 h1 {
-font-size: 4rem;
-letter-spacing: 4px;
-color: #fff;
-text-shadow: 0 0 15px #000;
-animation: glow 3s infinite ease-in-out;
+    font-size: 4rem;
+    letter-spacing: 4px;
+    color: #fff;
+    text-shadow: 0 0 15px #000;
+    animation: glow 3s infinite ease-in-out;
+    font-family: Headline;
+    font-size: 6rem;
 }
 
 
 @keyframes glow {
-0% { text-shadow: 0 0 10px #000; }
-50% { text-shadow: 0 0 30px #fff, 0 0 60px #ff0000; }
-100% { text-shadow: 0 0 10px #000; }
+    0% {
+        text-shadow: 0 0 10px #000;
+    }
+
+    50% {
+        text-shadow: 0 0 30px #fff, 0 0 60px #ff0000;
+    }
+
+    100% {
+        text-shadow: 0 0 10px #000;
+    }
 }
 
 
 .infinite-text {
-position: absolute;
-top: 120%;
-left: 50%;
-transform: translateX(-50%);
-font-size: 1.6rem;
-color: #fff;
-white-space: nowrap;
-animation: slideLoop 12s linear infinite;
-opacity: 0.9;
+    position: absolute;
+    top: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.6rem;
+    color: #fff;
+    white-space: nowrap;
+    animation: slideLoop 12s linear infinite;
+    opacity: 0.9;
+    font-family: pokemon;
 }
 
 
 @keyframes slideLoop {
-0% { transform: translateX(100%); }
-100% { transform: translateX(-100%); }
+    0% {
+        transform: translateX(130%);
+    }
+
+    100% {
+        transform: translateX(-250%);
+    }
 }
 
 
 .sparkle {
-position: absolute;
-width: 8px;
-height: 8px;
-background: white;
-border-radius: 50%;
-animation: sparkleAnim 2s infinite ease-in-out;
-opacity: 0.8;
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: white;
+    border-radius: 50%;
+    animation: sparkleAnim 2s infinite ease-in-out;
+    opacity: 0.8;
 }
 
 
 @keyframes sparkleAnim {
-0% { transform: scale(0.5); opacity: 0.5; }
-50% { transform: scale(1.5); opacity: 1; }
-100% { transform: scale(0.5); opacity: 0.5; }
+    0% {
+        transform: scale(0.5);
+        opacity: 0.5;
+    }
+
+    50% {
+        transform: scale(2);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(0.5);
+        opacity: 0.5;
+    }
+}
+
+#Button-Menu {
+    width: 20vw;
+    font-family: pokemon;
+    color: black;
+    display: grid;
+    margin: 0 auto;  /* horizontal zentriert */
+    height: auto;
+    font-size: 3rem;
+    text-align: center;
+    margin-top: 15%;
+    gap: 50px;
+    padding: 2% 3%;
+    border-radius: 55px;
+    backdrop-filter: blur(1rem);
+}
+
+#Button-Menu div {
+    background-color: white;
+    border-radius: 25px;
+    padding: 2%;
+    user-select: none;
 }
