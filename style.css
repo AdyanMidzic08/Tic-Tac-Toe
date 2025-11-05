@@ -16,4 +16,64 @@ video {
     top: 0;
     left: 0;
     z-index: -1;
+    /*Ramschi oder Huemer fragen ob es gut ausschaut*/
+    filter: blur(0.2rem);
+}
+
+.wrapper {
+position: relative;
+text-align: center;
+}
+
+
+h1 {
+font-size: 4rem;
+letter-spacing: 4px;
+color: #fff;
+text-shadow: 0 0 15px #000;
+animation: glow 3s infinite ease-in-out;
+}
+
+
+@keyframes glow {
+0% { text-shadow: 0 0 10px #000; }
+50% { text-shadow: 0 0 30px #fff, 0 0 60px #ff0000; }
+100% { text-shadow: 0 0 10px #000; }
+}
+
+
+.infinite-text {
+position: absolute;
+top: 120%;
+left: 50%;
+transform: translateX(-50%);
+font-size: 1.6rem;
+color: #fff;
+white-space: nowrap;
+animation: slideLoop 12s linear infinite;
+opacity: 0.9;
+}
+
+
+@keyframes slideLoop {
+0% { transform: translateX(100%); }
+100% { transform: translateX(-100%); }
+}
+
+
+.sparkle {
+position: absolute;
+width: 8px;
+height: 8px;
+background: white;
+border-radius: 50%;
+animation: sparkleAnim 2s infinite ease-in-out;
+opacity: 0.8;
+}
+
+
+@keyframes sparkleAnim {
+0% { transform: scale(0.5); opacity: 0.5; }
+50% { transform: scale(1.5); opacity: 1; }
+100% { transform: scale(0.5); opacity: 0.5; }
 }
