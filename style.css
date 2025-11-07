@@ -135,3 +135,58 @@ h1 {
     padding: 2%;
     user-select: none;
 }
+
+/* Pikachu running animation across the entire screen */
+#pikachu-run {
+    position: fixed;
+    bottom: 20px;
+    left: -100px; /* start offscreen */
+    width: 120px;
+    height: auto;
+    z-index: 1000;
+    pointer-events: none;
+    user-select: none;
+    will-change: transform, left;
+    animation: pikachuRunAcross 8s linear infinite;
+}
+
+@keyframes pikachuRunAcross {
+    0% {
+        left: -100px;
+        transform: translateY(0) scaleX(1);
+    }
+    15% {
+        transform: translateY(-15px) scaleX(1);
+    }
+    30% {
+        transform: translateY(0) scaleX(1);
+    }
+    45% {
+        transform: translateY(-15px) scaleX(1);
+        left: calc(100% + 100px);
+    }
+    /* pause briefly and turn around */
+    50% {
+        transform: translateY(0) scaleX(-1);
+        left: calc(100% + 100px);
+    }
+    65% {
+        transform: translateY(-15px) scaleX(-1);
+    }
+    80% {
+        transform: translateY(0) scaleX(-1);
+    }
+    95% {
+        transform: translateY(-15px) scaleX(-1);
+        left: -100px;
+    }
+    100% {
+        left: -100px;
+        transform: translateY(0) scaleX(1);
+    }
+}
+
+#Button-Menu a {
+    text-decoration: none;
+    color: black;
+} 
