@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rules</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+    <video id="rulesVideo" autoplay loop muted playsinline>
+        <source src="../Video/Background-Video.mp4" type="video/mp4">
+    </video>
+
+    <h1 id="rulesHeadline">Tic Tac Toe — Regeln</h1>
+
+    <main class="rules-container" id="rulesBox" role="region" aria-labelledby="rulesHeadline">
+        <p class="rules-intro">Hier sind die grundlegenden Regeln von Tic-Tac-Toe (Käsekästchen) — kurz und verständlich:</p>
+        <ol class="rules-list">
+            <li>Das Spiel wird auf einem 3×3 Raster gespielt.</li>
+            <br>
+            <li>Zwei Spieler wechseln sich ab. Ein Spieler benutzt <strong>X</strong>, der andere <strong>O</strong>.</li>
+            <br>
+            <li>Ziel ist es, drei eigene Zeichen in einer Linie zu platzieren: horizontal, vertikal oder diagonal.</li>
+            <br>
+            <li>Wer zuerst drei in einer Reihe hat, gewinnt sofort.</li>
+            <br>
+            <li>Sind alle Felder besetzt und niemand hat drei in einer Reihe, endet das Spiel unentschieden (Remis).</li>
+            <br>
+        </ol>
+
+        <div class="tips">
+            <strong>Tipp:</strong> Die Mitte ist strategisch wichtig. Versuche, eine Situation zu schaffen, in der du zwei Gewinnwege gleichzeitig hast (Fork).
+        </div>
+
+        <div class="actions">
+            <a href="../index.html">Zurück zur Startseite</a>
+        </div>
+    </main>
+
+    <!-- decorative watermarks (pokeball) on both sides -->
+    <img class="watermark watermark-left" src="../Images/pokeball.svg" alt="pokeball watermark left" aria-hidden="true">
+    <img class="watermark watermark-right" src="../Images/pokeball.svg" alt="pokeball watermark right" aria-hidden="true">
+
+</body>
+
+</html>
