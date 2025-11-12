@@ -6,37 +6,88 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tic-Tac-Toe</title>
     <link rel="stylesheet" href="../styles/gamePrep.css">
+    <script src="../script.js" defer></script>
 </head>
 
 <body>
+    <video autoplay loop muted playsinline>
+        <source src="../Video/Background-Video.mp4" type="video/mp4">
+    </video>
+
     <div id="header-gameprep">
-        <h1>PLACEHOLDER...</h1>
+        <h1>Choose Your Pokéball & Let's Play!</h1>
     </div>
 
     <div class="parent">
         <div class="div1">
-            <h1>TicTacToe select</h1>
+            <h1 id="headOne" class="selectHead">Select!!!</h1>
+            <!-- Player 1 token selector (3 image options) -->
+            <form class="token-selector" aria-label="Player 1 token">
+                <input type="radio" id="p1-opt1" name="p1-token" value="opt1" checked>
+                <label onclick="showPokeball1()"  id="userSelect1" for="p1-opt1" class="token-option" title="Option 1">
+                    <img src="../Images/pokeballs/poke1.png" alt="option 1">
+                </label>
+
+                <input type="radio" id="p1-opt2" name="p1-token" value="opt2">
+                <label onclick="showPokeball2()" id="userSelect2" for="p1-opt2" class="token-option" title="Option 2">
+                    <img src="../Images/pokeballs/poke2.png" alt="option 2">
+                </label>
+
+                <input type="radio" id="p1-opt3" name="p1-token" value="opt3">
+                <label onclick="showPokeball3()" for="p1-opt3" class="token-option" title="Option 3">
+                    <img src="../Images/pokeballs/poke3.png" alt="option 3">
+                </label>
+            </form>
         </div>
-
-
-
+        
         <div class="div2">
 
             <div class="inner-grid">
-                <div class="innerGrid1">Username</div>
-                <div class="innerGrid2">Username</div>
-                <div class="innerGrid3">input</div>
-                <div class="innerGrid4">input</div>
-                <div class="innerGrid5">output</div>
-                <div class="innerGrid6">output</div>
+                <div id="UserOne" class="innerGrid1">User1</div>
+                <div id="UserTwo" class="innerGrid2">User2</div>
+
+                <div class="innerGrid3">
+                    <label for="player1-name" class="visually-hidden">Player 1 name...</label>
+                    <input id="player1-name" class="name-input" type="text" placeholder="Player1 name...">
+                    <button onclick="playerOneName()" class="menu-btn btn-small" id="set-p1">Set</button>
+                </div>
+
+                <div class="innerGrid4">
+                    <label for="player2-name" class="visually-hidden">Player 2 name...</label>
+                    <input id="player2-name" class="name-input" type="text" placeholder="Player2 name...">
+                    <button onclick="playerTwoName()" class="menu-btn btn-small" id="set-p2">Set</button>
+                </div>
+
+                
+                <div id="outputOne" class="innerGrid5">. . .</div>
+
+                <div id="outputTwo" class="innerGrid6">. . .</div>
+
+
                 <div class="innerGrid7">start</div>
             </div>
 
         </div>
 
-
         <div class="div3">
-            <h1>TicTacToe select</h1>
+            <h1 id="headTwo" class="selectHead">Select!!!</h1>
+            <!-- Player 2 token selector (3 image options) -->
+            <form class="token-selector" aria-label="Player 2 token">
+                <input type="radio" id="p2-opt1" name="p2-token" value="opt1">
+                <label onclick="showPokeball4()" for="p2-opt1" class="token-option" title="Option 1">
+                    <img src="../Images/pokeballs/poke4.png" alt="option 1">
+                </label>
+
+                <input type="radio" id="p2-opt2" name="p2-token" value="opt2" checked>
+                <label onclick="showPokeball5()" for="p2-opt2" class="token-option" title="Option 2">
+                    <img src="../Images/pokeballs/poke5.png" alt="option 2">
+                </label>
+
+                <input type="radio" id="p2-opt3" name="p2-token" value="opt3">
+                <label onclick="showPokeball6()" for="p2-opt3" class="token-option" title="Option 3">
+                    <img src="../Images/pokeballs/poke6.png" alt="option 3">
+                </label>
+            </form>
         </div>
     </div>
 
