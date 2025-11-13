@@ -209,6 +209,7 @@ h1 {
     user-select: none;
     will-change: transform, left;
     animation: pikachuRunAcross 8s linear infinite;
+    background-size: c ;
 }
 
 @keyframes pikachuRunAcross {
@@ -316,6 +317,7 @@ body {
     margin-bottom: 1rem
 }
 
+
 .rules-list {
     margin: 1rem 0 0 1.1rem;
     line-height: 1.6
@@ -397,4 +399,61 @@ body {
 ol strong {
     color: red;
 }
+
+/* -------------------------
+   Worker / Industrial theme (scoped for game page)
+   Applies to #TicTacToe-field, .wrapper and .game-output
+   ------------------------- */
+
+
+/* TicTacToe field grid */
+#TicTacToe-field{
+    width: min(560px, 86vw);
+    margin: 18px auto 8px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    padding: 14px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(245,245,245,0.96));
+    border-radius: 12px;
+    border: 4px solid #222; /* dark frame like a metal plate */
+    box-shadow: 0 10px 40px rgba(0,0,0,0.28);
+}
+
+.field{
+    background-size:cover;
+    background-position: 5%;
+    height: 120px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:2.4rem; font-weight:900; color:#111; border-radius:8px;
+    border: 4px solid #222; /* thick divider, like metal seams */
+    cursor:pointer;
+    user-select:none;
+    transition: transform 160ms ease, box-shadow 160ms ease;
+}
+.field:hover{ transform: translateY(-6px); box-shadow: 0 12px 30px rgba(0,0,0,0.22); }
+.field.x{ color:#0b5cff } /* X color: blue steel */
+.field.o{ color:#b30000 } /* O color: deep red */
+
+/* output box */
+.game-output{
+    width: min(560px,86vw);
+    margin: 12px auto 28px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: linear-gradient(90deg,#fff8e1,#fff4cc);
+    border: 2px solid #e6a800; /* yellow accent */
+    color:#111;
+    font-weight:700;
+    text-align:center;
+    box-shadow: 0 8px 26px rgba(0,0,0,0.12);
+}
+
+/* responsive adjustments */
+@media (max-width:520px){
+    .field{ height: 86px; font-size:1.8rem }
+    .wrapper h1{ font-size:1.6rem; padding:8px 14px }
+}
+
+@media (prefers-reduced-motion:reduce){ .field, .wrapper h1 { transition: none; animation: none } }
 

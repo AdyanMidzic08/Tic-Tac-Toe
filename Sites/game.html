@@ -15,16 +15,19 @@
   </div>
 
   <div id="TicTacToe-field">
-    <div class="field" id="f1"></div>
-    <div class="field" id="f2"></div>
-    <div class="field" id="f3"></div>
-    <div class="field" id="f4"></div>
-    <div class="field" id="f5"></div>
-    <div class="field" id="f6"></div>
-    <div class="field" id="f7"></div>
-    <div class="field" id="f8"></div>
-    <div class="field" id="f9"></div>
+    <div onclick="setXandO(this)" class="field" id="f1"></div>
+    <div onclick="setXandO(this)" class="field" id="f2"></div>
+    <div onclick="setXandO(this)" class="field" id="f3"></div>
+    <div onclick="setXandO(this)" class="field" id="f4"></div>
+    <div onclick="setXandO(this)" class="field" id="f5"></div>
+    <div onclick="setXandO(this)" class="field" id="f6"></div>
+    <div onclick="setXandO(this)" class="field" id="f7"></div>
+    <div onclick="setXandO(this)" class="field" id="f8"></div>
+    <div onclick="setXandO(this)" class="field" id="f9"></div>
   </div>
+
+  <!-- Output / Result area -->
+  <div id="game-output" class="game-output" aria-live="polite"></div>
 
   <video autoplay loop muted playsinline>
     <source src="../Video/Background-Video.mp4" type="video/mp4">
