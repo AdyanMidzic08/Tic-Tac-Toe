@@ -25,6 +25,9 @@ video {
     filter: blur(0.1rem);
 }
 
+#ready-button {
+    color: green;
+}
 
 .parent {
     display: grid;
@@ -263,7 +266,7 @@ video {
 }
 
 /* slightly dim the video behind so the cards read well */
-body::after{ content: ""; position: fixed; inset:0; background: linear-gradient(180deg, rgba(4,8,20,0.32), rgba(6,10,28,0.56)); pointer-events:none; z-index:0; }
+body::after{ content: ""; position: fixed; inset:0; background: linear-gradient(180deg, rgba(60,8,8,0.12), rgba(48,6,6,0.24)); pointer-events:none; z-index:0; }
 
 .parent{ gap:36px; left:50%; top:50%; transform: translate(-50%,-50%); width:calc(100% - 64px); }
 
@@ -279,48 +282,11 @@ body::after{ content: ""; position: fixed; inset:0; background: linear-gradient(
 .inner-grid div{
     background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));
     border-radius:12px; border:1px solid rgba(255,255,255,0.04);
-    box-shadow: 0 8px 26px rgba(0,0,0,0.45); color:var(--muted); transition: transform 220ms cubic-bezier(.2,.9,.2,1), box-shadow 220ms ease;
 }
 .selectHead{ color: var(--accent); font-weight:800; text-shadow: 0 6px 18px rgba(0,0,0,0.6); }
 
-.token-selector{ gap:14px }
-.token-option{ width:104px; height:104px; border-radius:999px; position:relative; display:inline-grid; place-items:center; background: radial-gradient(circle at 30% 25%, rgba(255,255,255,0.03), rgba(0,0,0,0.12)); border:1px solid rgba(255,255,255,0.04); box-shadow: 0 8px 30px rgba(2,6,18,0.6); transition: transform 220ms ease, box-shadow 220ms ease; }
-.token-option img{ width:64px; height:64px; filter: drop-shadow(0 8px 12px rgba(0,0,0,0.55)); }
 
-input[type="radio"]:checked + .token-option{ transform: translateY(-6px) scale(1.05); box-shadow: 0 22px 56px rgba(50,230,210,0.06); border-color: rgba(50,230,210,0.28); }
 
-.token-option::after{ content:""; position:absolute; left:50%; transform:translateX(-50%); bottom:-6px; width:64px; height:8px; border-radius:6px; background: linear-gradient(90deg, rgba(50,230,210,0.12), rgba(255,201,80,0.12)); opacity:0; transition: opacity 220ms ease; }
-input[type="radio"]:checked + .token-option::after{ opacity:1 }
-
-.name-input:focus{ outline: none; box-shadow: 0 8px 22px rgba(6,12,24,0.6), 0 0 0 4px rgba(50,230,210,0.08); border-color: rgba(50,230,210,0.22); }
-.menu-btn.btn-small:focus{ outline: none; box-shadow: 0 8px 26px rgba(50,230,210,0.08); transform: translateY(-2px); }
-
-@keyframes pulseSoft{ 0%{ transform: none } 50%{ transform: translateY(-6px) scale(1.02) } 100%{ transform: none } }
-.innerGrid7{
-    animation: pulseSoft 4s ease-in-out infinite;
-    /* make Start visually a red button */
-    background: linear-gradient(180deg, #ff6b6b, #ff3b3b);
-    color: #fff;
-    border: 1px solid rgba(255,80,80,0.35);
-    box-shadow: 0 12px 36px rgba(255,80,80,0.12), 0 6px 18px rgba(0,0,0,0.45);
-    cursor: pointer;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 18px;
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
-}
-
-.innerGrid7:hover{
-    transform: translateY(-6px) scale(1.02);
-    box-shadow: 0 22px 60px rgba(255,70,70,0.18);
-}
-
-.innerGrid7:focus{ outline: none; box-shadow: 0 8px 30px rgba(255,80,80,0.14), 0 0 0 4px rgba(255,80,80,0.06); }
 
 input {
     font-family: pokemon;
