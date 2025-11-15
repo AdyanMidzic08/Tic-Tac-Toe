@@ -429,15 +429,22 @@ ol strong {
     border: 4px solid #222; /* thick divider, like metal seams */
     cursor:pointer;
     user-select:none;
-    transition: transform 160ms ease, box-shadow 160ms ease;
+    transition: transform 180ms cubic-bezier(.2,.9,.2,1), box-shadow 180ms cubic-bezier(.2,.9,.2,1);
 }
 .field:hover{ transform: translateY(-6px); box-shadow: 0 12px 30px rgba(0,0,0,0.22); }
 .field.x{ color:#0b5cff } /* X color: blue steel */
 .field.o{ color:#b30000 } /* O color: deep red */
 
+/* mark placement animation: pop + slight rotate to feel tactile */
+.field.x, .field.o{
+    transform-origin: center center;
+    animation: markPop 420ms cubic-bezier(.2,.9,.2,1) both;
+}
+
 /* output box */
 .game-output{
     width: min(560px,86vw);
+    height: 6vh;
     margin: 12px auto 28px;
     padding: 12px 14px;
     border-radius: 10px;
@@ -449,11 +456,93 @@ ol strong {
     box-shadow: 0 8px 26px rgba(0,0,0,0.12);
 }
 
-/* responsive adjustments */
-@media (max-width:520px){
-    .field{ height: 86px; font-size:1.8rem }
-    .wrapper h1{ font-size:1.6rem; padding:8px 14px }
+.game-output p {
+    color: rebeccapurple;
 }
 
-@media (prefers-reduced-motion:reduce){ .field, .wrapper h1 { transition: none; animation: none } }
+/* --- Message styles & improved animations --- */
+#Error-Message {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    color: #8a0f0f;
+    font-weight: 900;
+    background: linear-gradient(90deg, rgba(255,120,120,0.12), rgba(255,80,80,0.06));
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(170,20,20,0.18);
+    box-shadow: 0 6px 20px rgba(170,20,20,0.08);
+    /* strike attention with a combined shake+flash entrance */
+    animation: errorFlashShake 1.0s cubic-bezier(.2,.8,.2,1) 1 both;
+}
 
+#winnerSent{
+    color: #1b8f1b;
+    font-weight: 900;
+    background: linear-gradient(90deg, rgba(50,200,80,0.06), rgba(20,140,40,0.02));
+    padding: 8px 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(20,140,40,0.12);
+    box-shadow: 0 12px 48px rgba(27,143,27,0.06);
+    /* entrance pop then slow celebratory float + glow */
+    animation: winnerEntrance 1.2s cubic-bezier(.2,.9,.2,1) 1 both, winnerFloat 3.6s ease-in-out 0.8s infinite alternate;
+}
+
+#tie {
+    color: #555;
+    font-weight: 800;
+    padding: 8px 12px;
+    border-radius: 8px;
+    background: linear-gradient(90deg, rgba(200,200,200,0.04), rgba(160,160,160,0.02));
+    border: 1px solid rgba(90,90,90,0.06);
+    box-shadow: 0 8px 26px rgba(0,0,0,0.06);
+    /* calm but noticeable entrance */
+    animation: tieEntrance 1.1s cubic-bezier(.2,.9,.2,1) 1 both, tiePulse 2.8s ease-in-out 1.2s infinite alternate;
+}
+
+/* --- Keyframes --- */
+@keyframes markPop{
+    0%{ transform: scale(0.85) rotate(-2deg); opacity: 0; filter: blur(1px); }
+    60%{ transform: scale(1.08) rotate(3deg); opacity: 1; filter: blur(0); }
+    100%{ transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+@keyframes winnerEntrance{
+    0%{ transform: translateY(18px) scale(0.9); opacity: 0; filter: blur(2px); }
+    60%{ transform: translateY(-6px) scale(1.06); opacity: 1; filter: blur(0); }
+    100%{ transform: translateY(0) scale(1); opacity: 1; }
+}
+
+@keyframes winnerFloat{
+    0%{ transform: translateY(0) scale(1); text-shadow: 0 0 0 rgba(27,143,27,0); }
+    50%{ transform: translateY(-8px) scale(1.02); text-shadow: 0 14px 40px rgba(27,143,27,0.10); }
+    100%{ transform: translateY(0) scale(1); text-shadow: 0 0 0 rgba(27,143,27,0); }
+}
+
+@keyframes errorFlashShake{
+    0%{ transform: translateX(0) scale(1); background-color: rgba(255,120,120,0.04); }
+    10%{ transform: translateX(-8px) rotate(-1deg) scale(1.02); background-color: rgba(255,180,180,0.08); }
+    20%{ transform: translateX(8px) rotate(1deg); }
+    30%{ transform: translateX(-6px) rotate(-0.6deg); }
+    45%{ transform: translateX(6px) rotate(0.6deg); }
+    60%{ transform: translateX(-3px); }
+    75%{ transform: translateX(3px); }
+    100%{ transform: translateX(0) rotate(0) scale(1); background-color: transparent; }
+}
+
+@keyframes tieEntrance{
+    0%{ transform: translateY(12px) scale(0.96); opacity: 0; }
+    60%{ transform: translateY(-4px) scale(1.02); opacity: 1; }
+    100%{ transform: translateY(0) scale(1); }
+}
+
+@keyframes tiePulse{
+    0%{ transform: scale(1); opacity: 0.92; }
+    50%{ transform: scale(1.025); opacity: 1; }
+    100%{ transform: scale(1); opacity: 0.95; }
+}
+
+@media (prefers-reduced-motion: reduce){
+    .field.x, .field.o, #Error-Message, #winnerSent, #tie { animation: none !important; transition: none !important; }
+}
+ 
