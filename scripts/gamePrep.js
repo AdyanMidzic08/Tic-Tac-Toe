@@ -10,6 +10,10 @@ let hasPlayer2Input = false;
 let hasPlayer1SelectedAPokeball = false;
 let hasPlayer2SelectedAPokeball = false;
 
+let newGameSound = new Audio('../Audio/New-Game.wav');
+let pokeballSelectSound1 = new Audio('../Audio/Pokeselect.wav');
+let pokeballSelectSound2 = new Audio('../Audio/Pokeselect.wav');
+let nameSelectSound = new Audio('../Audio/Name-Select.wav');
 
 //Arrays
 let pokeImages = [
@@ -24,16 +28,27 @@ let pokeImages = [
 //Functions
 function playerOneName() {
     let display1 = document.getElementById('player1-name').value;
+
+    if (display1 == "") {
+        display1 = "Player 1";
+    }
     document.getElementById('UserOne').innerHTML = `<h3> ${display1} </h3>`;
-    user1.innerHTML = `<h3> ${display1} select!!!</h3>`;
+    user1.innerHTML = `<h3 class="userSelectText"> ${display1} select!!!</h3>`;
     hasPlayer1Input = true;
+    nameSelectSound.play();
     checkifReady();
 }
 
 function playerTwoName() {
     let display2 = document.getElementById('player2-name').value;
+
+    if (display2 == "") {
+        display2 = "Player 2";
+    }
+
     document.getElementById('UserTwo').innerHTML = `<h3> ${display2} </h3>`;
-    user2.innerHTML = `<h3> ${display2} select!!!</h3>`;
+    user2.innerHTML = `<h3 class="userSelectText"> ${display2} select!!!</h3>`;
+    nameSelectSound.play();
     hasPlayer2Input = true;
     checkifReady();
 }
@@ -42,39 +57,46 @@ function showPokeball1() {
     outputUser1.innerHTML = `<img class="selectedPokeballs" src="${pokeImages[0]}" alt="">`;
     hasPlayer1SelectedAPokeball = true;
     checkifReady();
+    pokeballSelectSound1.play();
 }
 function showPokeball2() {
     outputUser1.innerHTML = `<img class="selectedPokeballs" src="${pokeImages[1]}" alt="">`;
     hasPlayer1SelectedAPokeball = true;
     checkifReady();
+    pokeballSelectSound1.play();
 }
 
 function showPokeball3() {
     outputUser1.innerHTML = `<img class="selectedPokeballs" src="${pokeImages[2]}" alt="">`;
     hasPlayer1SelectedAPokeball = true;
     checkifReady();
+    pokeballSelectSound1.play();
 }
 
 function showPokeball4() {
     outputUser2.innerHTML = `<img class="selectedPokeballs" src="${pokeImages[3]}" alt="">`;
     hasPlayer2SelectedAPokeball = true;
     checkifReady();
+    pokeballSelectSound2.play();
 }
 
 function showPokeball5() {
     hasPlayer2SelectedAPokeball = true;
     outputUser2.innerHTML = `<img class="selectedPokeballs" src="${pokeImages[4]}" alt="">`;
     checkifReady();
+    pokeballSelectSound2.play();
 }
 
 function showPokeball6() {
     hasPlayer2SelectedAPokeball = true;
     outputUser2.innerHTML = `<img class="selectedPokeballs" src="${pokeImages[5]}" alt="">`;
     checkifReady();
+    pokeballSelectSound2.play();
 }
 
 function startGame() {
     // Namen holen
+
     const player1Name = document.getElementById('player1-name').value;
     const player2Name = document.getElementById('player2-name').value;
 
@@ -90,10 +112,8 @@ function startGame() {
         player2Image
     };
 
-    // ✅ Im localStorage speichern
     localStorage.setItem('gameData', JSON.stringify(gameData));
 
-    // Dann zur Game-Seite wechseln
     window.location.href = "game.html";
 }
 
@@ -103,14 +123,39 @@ function changeTitleOne() {
 
 function checkifReady() {
     if (hasPlayer1Input && hasPlayer2Input && hasPlayer1SelectedAPokeball && hasPlayer2SelectedAPokeball) {
-    
-    let newDiv = document.createElement('div');
-    newDiv.id = 'ready-button';
-    newDiv.className = 'innerGrid7';
-    newDiv.textContent = 'Start';
-    newDiv.onclick = startGame; // onclick-Event direkt zuweisen
 
-    startButton.replaceWith(newDiv);
-    newDiv.innerHTML = `<div onclick="startGame()" id="ready-button" class="innerGrid7">start</div>`;
+        newGameSound.play();
+        let newDiv = document.createElement('div');
+        newDiv.id = 'ready-button';
+        newDiv.className = 'innerGrid7';
+        newDiv.textContent = 'Start';
+        newDiv.onclick = startGame; // onclick-Event direkt zuweisen
+
+        startButton.replaceWith(newDiv);
+        newDiv.innerHTML = `<div onclick="startGame()" id="ready-button" class="innerGrid7">start</div>`;
     }
 }
+
+// Allow pressing Enter in the name inputs to confirm the name (same as clicking the Set button)
+document.addEventListener('DOMContentLoaded', function () {
+    let p1 = document.getElementById('player1-name');
+    let p2 = document.getElementById('player2-name');
+
+    if (p1) {
+        p1.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                playerOneName();
+            }
+        });
+    }
+
+    if (p2) {
+        p2.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                playerTwoName();
+            }
+        });
+    }
+});

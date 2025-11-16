@@ -1,22 +1,37 @@
 //Local Storage auslesen 
 //100% Human
+
 let data = JSON.parse(localStorage.getItem('gameData'));
 let player1Poke = `<img src="${data.player1Image}" alt=""></img>`;
 let player2Poke = `<img src="${data.player2Image}" alt=""></img>`;
-let player1PokeName = data.player1Name;
-let player2PokeName = data.player2Name;
+let player1PokeName = data.player1Name || "Player 1";
+let player2PokeName = data.player2Name || "Player 2";
 let currentPlayer = randomPlayer();
 let initialStartPlayer = currentPlayer;
 let row = 0;
 let c = 0;
+
+let playerSound = new Audio('../Audio/Player2.wav');
+let winnerSound = new Audio('../Audio/Winning.wav');
+let drawSound = new Audio('../Audio/TIE.wav');
+let fieldUsed = new Audio('../Audio/field-used.wav');
+let loadedGame = new Audio('../Audio/LoadedGame.wav');
+
+// Prüfen, ob der Sound schon abgespielt wurde
+let loadedPlayed = localStorage.getItem("loadedPlayed");
+
+if (!loadedPlayed) {
+    loadedGame.play();
+    localStorage.setItem("loadedPlayed", "true");
+}
+
+
 //Tic Tac Toe:
 let gameMatrix = [
     [-1, -1, -1],
     [-1, -1, -1],
     [-1, -1, -1]
 ];
-
-console.log(initialStartPlayer);
 
 function randomNumGen() {
     let rand = Math.floor(Math.random() * 3) + 1;
@@ -57,6 +72,7 @@ function setXandO(element) {
     if (element.dataset.filled === "true") {
         let originalText = gameOutput.innerHTML;
         gameOutput.innerHTML = `<h2 id="Error-Message">Dieses Feld ist bereits belegt!</h2>`;
+        fieldUsed.play();
         let error = document.getElementById('Error-Message');
         error.style.color = "red";
         error.style.fontSize = "2rem";
@@ -75,6 +91,7 @@ function setXandO(element) {
         gameOutput.innerHTML += `<h2>${player1PokeName} it is your turn!</h2>`;
         element.dataset.filled = "true";
         addNumberToField(element);
+        playerSound.play();
     } else {
         element.style.backgroundImage = `url("${data.player1Image}")`;
         element.style.background = "cover";
@@ -83,6 +100,7 @@ function setXandO(element) {
         gameOutput.innerHTML += `<h2>${player2PokeName} it is your turn!</h2>`;
         element.dataset.filled = "true";
         addNumberToField(element);
+        playerSound.play();
     }
     console.log(`CurrentPlayer: ${currentPlayer}`)
     currentPlayer++;
@@ -91,18 +109,24 @@ function setXandO(element) {
     if (winner == 2) {
         console.log('Kreis hat gewonnen')
         gameOutput.innerHTML = `<h2 id="winnerSent">${player2PokeName} YOU HAVE WON!</h2>`;
+        winnerSound.play();
         disableBoard();
+        showEndResult();
     } else if (winner == 1) {
         console.log('X hat gewonnen');
         gameOutput.innerHTML = `<h2 id="winnerSent">${player1PokeName} YOU HAVE WON!</h2>`;
+        winnerSound.play();
         disableBoard();
+        showEndResult();
     }
 
     if (winner == 0) {
         if ((currentPlayer == 11 && initialStartPlayer == 2) ||
             (currentPlayer == 10 && initialStartPlayer == 1)) {
             gameOutput.innerHTML = `<h2 id="tie"> NOBODY HAS WON TIE!</h2>`;
+            drawSound.play();
             disableBoard();
+            showEndResult();
         }
     }
 }
@@ -163,4 +187,28 @@ function disableBoard() {
         field.style.opacity = '0.5';
     });
     console.log("Alle Felder wurden deaktiviert. Das Spiel ist vorbei!");
+}
+
+function showEndResult() {
+    gameOutput.innerHTML += 
+    `<div id="Grid-End-Buttons">
+        <div onclick="startNewGame()" id="newGame">Homepage</div>
+        <div onclick="reloadGame()" id="indexGame">ReloadGame</div>
+    </div>`;
+}
+
+function reloadGame() {
+    window.location.reload();
+}
+
+function startNewGame() {
+    localStorage.removeItem("loadedPlayed");
+    window.location.href = "../index.html";
+}
+
+
+function stopAudio() {
+  loadedGame.pause();
+  loadedGame.currentTime = 0
+
 }

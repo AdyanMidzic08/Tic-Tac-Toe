@@ -10,6 +10,8 @@ function uiStars() {
         document.body.appendChild(star);
     }
 }
+let startGamePrep = new Audio('../Audio/rules-NewGame.wav');
+startGamePrep.play();
 
 window.onload = function() {
     uiStars();
