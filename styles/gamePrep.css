@@ -2,10 +2,6 @@ body {
     margin: 0;
 }
 
-h1 {
-    animation: tracking-in-contract-bck-normal 1s cubic-bezier(0.215, 0.610, 0.355, 1.000) 0s 1 normal both;
-}
-
 @font-face {
     font-family: Headline;
     src: url(../font/Ketchum.otf);
