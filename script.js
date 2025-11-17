@@ -222,10 +222,10 @@ function disableBoard() {
 function showEndResult() {
     gameOutput.innerHTML +=
         `<div id="Grid-End-Buttons">
-        <div onclick="startNewGame()" id="newGame">Homepage</div>
-        <div onclick="reloadGame()" id="indexGame">ReloadGame</div>
+        <div onclick="startNewGame()" class="hover-glow hover-up hover-outline" id="newGame">Homepage</div>
+        <div onclick="reloadGame()" class="hover-glow hover-up hover-outline" id="indexGame">ReloadGame</div>
     </div>
-    <div onclick="resetScore()" id="resetScoreBtn">Reset Score</div>`;
+    <div onclick="resetScore()" class="hover-glow hover-up hover-outline" id="resetScoreBtn">Reset Score</div>`;
 }
 
 function reloadGame() {
