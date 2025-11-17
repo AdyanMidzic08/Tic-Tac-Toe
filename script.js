@@ -6,10 +6,16 @@ let player1Poke = `<img src="${data.player1Image}" alt=""></img>`;
 let player2Poke = `<img src="${data.player2Image}" alt=""></img>`;
 let player1PokeName = data.player1Name || "Player 1";
 let player2PokeName = data.player2Name || "Player 2";
+let playerStatsDiv = document.getElementById('playerStats');
 let currentPlayer = randomPlayer();
 let initialStartPlayer = currentPlayer;
 let row = 0;
 let c = 0;
+let player1Score = parseInt(localStorage.getItem("player1Score")) || 0;
+let player2Score = parseInt(localStorage.getItem("player2Score")) || 0;
+
+
+//Audio:
 
 let playerSound = new Audio('../Audio/Player2.wav');
 let winnerSound = new Audio('../Audio/Winning.wav');
@@ -25,6 +31,20 @@ if (!loadedPlayed) {
     localStorage.setItem("loadedPlayed", "true");
 }
 
+function playerStats() {
+    playerStatsDiv.innerHTML =
+        `<h2> ${player1PokeName} : ${player1Score} vs ${player2PokeName} : ${player2Score}</h2>`;
+
+        if(player1Score > player2Score) {
+            playerStatsDiv.innerHTML += `<h2 id="winnerSent">${player1PokeName} is leading!</h2>`;
+        }else if(player2Score > player1Score) {
+            playerStatsDiv.innerHTML += `<h2 id="winnerSent">${player2PokeName} is leading!</h2>`;
+        } else {
+            playerStatsDiv.innerHTML += `<h2 id="tie">It's a tie so far!</h2>`; 
+        }
+}
+
+playerStats();
 
 //Tic Tac Toe:
 let gameMatrix = [
@@ -109,15 +129,25 @@ function setXandO(element) {
     if (winner == 2) {
         console.log('Kreis hat gewonnen')
         gameOutput.innerHTML = `<h2 id="winnerSent">${player2PokeName} YOU HAVE WON!</h2>`;
+        player2Score++;
+        localStorage.setItem("player1Score", player1Score);
+        localStorage.setItem("player2Score", player2Score);
+        playerStats();
         winnerSound.play();
         disableBoard();
         showEndResult();
     } else if (winner == 1) {
         console.log('X hat gewonnen');
         gameOutput.innerHTML = `<h2 id="winnerSent">${player1PokeName} YOU HAVE WON!</h2>`;
+
+        player1Score++;
+        localStorage.setItem("player1Score", player1Score);
+        localStorage.setItem("player2Score", player2Score);
+        playerStats();
         winnerSound.play();
         disableBoard();
         showEndResult();
+
     }
 
     if (winner == 0) {
@@ -190,11 +220,12 @@ function disableBoard() {
 }
 
 function showEndResult() {
-    gameOutput.innerHTML += 
-    `<div id="Grid-End-Buttons">
+    gameOutput.innerHTML +=
+        `<div id="Grid-End-Buttons">
         <div onclick="startNewGame()" id="newGame">Homepage</div>
         <div onclick="reloadGame()" id="indexGame">ReloadGame</div>
-    </div>`;
+    </div>
+    <div onclick="resetScore()" id="resetScoreBtn">Reset Score</div>`;
 }
 
 function reloadGame() {
@@ -203,12 +234,24 @@ function reloadGame() {
 
 function startNewGame() {
     localStorage.removeItem("loadedPlayed");
+    localStorage.setItem("player1Score", 0);
+    localStorage.setItem("player2Score", 0);
     window.location.href = "../index.html";
 }
 
 
 function stopAudio() {
-  loadedGame.pause();
-  loadedGame.currentTime = 0
+    loadedGame.pause();
+    loadedGame.currentTime = 0
 
+}
+
+function resetScore() {
+    localStorage.setItem("player1Score", 0);
+    localStorage.setItem("player2Score", 0);
+
+    player1Score = 0;
+    player2Score = 0;
+
+    playerStats(); // Score-Anzeige aktualisieren
 }

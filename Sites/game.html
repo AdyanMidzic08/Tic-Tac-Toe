@@ -14,6 +14,7 @@
     <h1>Tic Tac Toe - Battle!</h1>
   </div>
 
+  <div id="playerStats" class="game-output hover-glow hover-up hover-outline"></div>
   <div id="TicTacToe-field">
     <div onclick="setXandO(this); checkWinner(this);" class="field" id="f1" data-row="0" data-col="0"></div>
     <div onclick="setXandO(this); checkWinner(this);" class="field" id="f2" data-row="0" data-col="1"></div>
@@ -27,7 +28,8 @@
   </div>
 
   <!-- Output / Result area -->
-  <div id="game-output" class="game-output" aria-live="polite"></div>
+  <div id="game-output" class="game-output hover-glow hover-up hover-outline" aria-live="polite"></div>
+  
 
   <video autoplay loop muted playsinline>
     <source src="../Video/Background-Video.mp4" type="video/mp4">

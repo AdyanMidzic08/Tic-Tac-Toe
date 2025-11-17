@@ -404,3 +404,16 @@ input {
         opacity: 1;
     }
 }
+
+.hover-glow:hover {
+    box-shadow: 0 0 15px rgba(255, 255, 0, 0.8);
+    transform: scale(1.03);
+}
+
+.hover-up:hover {
+    transform: translateY(-5px);
+}
+
+.hover-outline:hover {
+    border-color: #00bcd4;
+}
