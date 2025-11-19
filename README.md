@@ -6,8 +6,11 @@ Das Spiel erkennt automatisch, wenn jemand gewonnen hat oder ein Unentschieden e
 
 ---
 
-#Live-Site:
+# Live-Site:
 https://adyanmidzic08.github.io/Tic-Tac-Toe/
+
+# CODE
+https://github.com/AdyanMidzic08/Tic-Tac-Toe
 
 ## Inhaltsverzeichnis
 - [Über das Projekt](#über-das-projekt)
